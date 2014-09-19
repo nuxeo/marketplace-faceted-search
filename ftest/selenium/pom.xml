@@ -1,0 +1,179 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Inherit from a corporate POM, not the Nuxeo one -->
+  <!-- <parent> -->
+  <!-- <groupId>com.company</groupId> -->
+  <!-- <artifactId>corporate</artifactId> -->
+  <!-- <version>1.0</version> -->
+  <!-- </parent> -->
+  <!-- This parent is for Nuxeo internal use only -->
+  <parent>
+    <groupId>org.nuxeo</groupId>
+    <artifactId>nuxeo-ecm</artifactId>
+    <version>5.9.6-SNAPSHOT</version>
+    <relativePath></relativePath>
+  </parent>
+
+  <groupId>org.nuxeo.marketplace.faceted.search</groupId>
+  <artifactId>selenium-ftest</artifactId>
+  <name>Nuxeo Plateform Faceted Search Functional Tests</name>
+  <description>Nuxeo Plateform Faceted Search Functional Tests</description>
+  <version>2.0.3-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <properties>
+    <nuxeo.distribution.version>5.9.6-SNAPSHOT</nuxeo.distribution.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <!-- Import Nuxeo BOM -->
+      <dependency>
+        <groupId>org.nuxeo.ecm.distribution</groupId>
+        <artifactId>nuxeo-distribution</artifactId>
+        <version>${nuxeo.distribution.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.ecm.distribution</groupId>
+        <artifactId>nuxeo-distribution-tomcat</artifactId>
+        <version>${nuxeo.distribution.version}</version>
+        <classifier>nuxeo-cap</classifier>
+        <type>zip</type>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.nuxeo.marketplace.faceted.search</groupId>
+        <artifactId>marketplace</artifactId>
+        <version>${project.version}</version>
+        <type>zip</type>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-server-standalone</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.nuxeo.ecm.distribution</groupId>
+      <artifactId>nuxeo-functional-tests</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- Copy pluginManagement from org.nuxeo:nuxeo-ecm if not inheriting -->
+    <!-- <pluginManagement> -->
+    <!-- <plugins> -->
+    <!-- <plugin> -->
+    <!-- <groupId>org.nuxeo.build</groupId> -->
+    <!-- <artifactId>ant-assembly-maven-plugin</artifactId> -->
+    <!-- <version>${ant.assembly.version}</version> -->
+    <!-- <extensions>true</extensions> -->
+    <!-- </plugin> -->
+    <!-- <plugin> -->
+    <!-- <groupId>org.apache.maven.plugins</groupId> -->
+    <!-- <artifactId>maven-surefire-plugin</artifactId> -->
+    <!-- <version>2.17</version> -->
+    <!-- </plugin> -->
+    <!-- <plugin> -->
+    <!-- <groupId>org.apache.maven.plugins</groupId> -->
+    <!-- <artifactId>maven-failsafe-plugin</artifactId> -->
+    <!-- <version>2.17</version> -->
+    <!-- </plugin> -->
+    <!-- </plugins> -->
+    <!-- </pluginManagement> -->
+    <plugins>
+      <plugin>
+        <groupId>org.nuxeo.build</groupId>
+        <artifactId>ant-assembly-maven-plugin</artifactId>
+        <configuration>
+          <buildFile>${basedir}/itests.xml</buildFile>
+        </configuration>
+        <executions>
+          <execution>
+            <id>start-nuxeo</id>
+            <phase>pre-integration-test</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <configuration>
+              <targets>
+                <target>prepare-environment</target>
+                <target>start</target>
+              </targets>
+            </configuration>
+          </execution>
+          <execution>
+            <id>run-tests</id>
+            <goals>
+              <goal>integration-test</goal>
+              <goal>verify</goal>
+            </goals>
+            <configuration>
+              <target>run-selenium</target>
+            </configuration>
+          </execution>
+          <execution>
+            <id>stop-nuxeo</id>
+            <phase>post-integration-test</phase>
+            <goals>
+              <goal>build</goal>
+            </goals>
+            <configuration>
+              <targets>
+                <target>stop</target>
+                <target>cleanup-environment</target>
+              </targets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>tomcat</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+    </profile>
+    <profile>
+      <id>jboss</id>
+    </profile>
+    <profile>
+      <id>jbossear</id>
+    </profile>
+    <profile>
+      <id>pgsql</id>
+    </profile>
+    <profile>
+      <id>mssql</id>
+    </profile>
+    <profile>
+      <id>oracle10g</id>
+    </profile>
+    <profile>
+      <id>oracle11g</id>
+    </profile>
+    <profile>
+      <id>mysql</id>
+    </profile>
+  </profiles>
+
+</project>
