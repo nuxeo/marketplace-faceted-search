@@ -1,5 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.nuxeo.ecm.distribution</groupId>
     <artifactId>nuxeo-distribution</artifactId>
@@ -11,7 +12,7 @@
   <packaging>pom</packaging>
   <name>Nuxeo Marketplace packaging for Faceted Search</name>
   <description>Convenience POM for running sub-modules</description>
-  <version>2.0.3-SNAPSHOT</version>
+  <version>1.0-SNAPSHOT</version>
 
   <modules>
     <module>marketplace</module>
@@ -51,9 +52,9 @@
   </repositories>
 
   <scm>
-    <connection>scm:git:git://github.com/nuxeo/nuxeo-marketplace-sample.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com:nuxeo/nuxeo-marketplace-sample.git</developerConnection>
-    <url>https://github.com/nuxeo/nuxeo-marketplace-sample</url>
+    <connection>scm:git:git://github.com/nuxeo/nuxeo-marketplace-faceted-search.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com:nuxeo/nuxeo-marketplace-faceted-search.git</developerConnection>
+    <url>https://github.com/nuxeo/nuxeo-marketplace-faceted-search</url>
   </scm>
 
 </project>

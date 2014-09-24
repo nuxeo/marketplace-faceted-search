@@ -2,25 +2,16 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <!-- Inherit from a corporate POM, not the Nuxeo one -->
-  <!-- <parent> -->
-  <!-- <groupId>com.company</groupId> -->
-  <!-- <artifactId>corporate</artifactId> -->
-  <!-- <version>1.0</version> -->
-  <!-- </parent> -->
-  <!-- This parent is for Nuxeo internal use only -->
   <parent>
-    <groupId>org.nuxeo</groupId>
-    <artifactId>nuxeo-ecm</artifactId>
-    <version>5.9.6-SNAPSHOT</version>
-    <relativePath></relativePath>
+    <groupId>org.nuxeo.marketplace.faceted.search</groupId>
+    <artifactId>parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <groupId>org.nuxeo.marketplace.faceted.search</groupId>
   <artifactId>selenium-ftest</artifactId>
   <name>Nuxeo Plateform Faceted Search Functional Tests</name>
   <description>Nuxeo Plateform Faceted Search Functional Tests</description>
-  <version>2.0.3-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <properties>
@@ -47,7 +38,7 @@
       </dependency>
       <dependency>
         <groupId>org.nuxeo.marketplace.faceted.search</groupId>
-        <artifactId>marketplace</artifactId>
+        <artifactId>marketplace-faceted-search</artifactId>
         <version>${project.version}</version>
         <type>zip</type>
       </dependency>

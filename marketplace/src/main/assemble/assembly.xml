@@ -19,8 +19,8 @@
     <artifact:nuxeo-expand includeTestScope="true"
                            groupPrefixes="org.nuxeo,com.nuxeo" />
     <!-- For Nuxeo IDE being able to use that distribution as a SDK -->
-    <artifact:print output="${outdir}/artifacts-sample.properties" mode="sdk" />
-    <artifact:print output="${outdir}/test-artifacts-sample.properties"
+    <artifact:print output="${outdir}/artifacts-faceted-search.properties" mode="sdk" />
+    <artifact:print output="${outdir}/test-artifacts-faceted-search.properties"
                     mode="sdk"
                     scopes="test" />
     <!-- Prints the graph for debugging purpose -->
@@ -29,7 +29,7 @@
 
   <target name="build"
           depends="init"
-          description="Build Nuxeo sample Marketplace package">
+          description="Build Nuxeo Faceted Search Marketplace package">
     <tstamp />
     <delete failonerror="false" dir="${outdir}/nxr" />
     <mkdir dir="${outdir}/nxr" />
@@ -42,9 +42,9 @@
         <filter token="DISTRIB_VERSION" value="${nuxeo.distribution.version}" />
       </filterset>
     </copy>
-    <copy file="${outdir}/artifacts-sample.properties"
+    <copy file="${outdir}/artifacts-faceted-search.properties"
           todir="${outdir}/marketplace/install" />
-    <copy file="${outdir}/test-artifacts-sample.properties"
+    <copy file="${outdir}/test-artifacts-faceted-search.properties"
           todir="${outdir}/marketplace/install" />
 
     <!-- Base distribution NXR -->
@@ -90,13 +90,13 @@
                 file2="${outdir}/nuxeo-distribution-dm-${nuxeo.distribution.version}.zip"
                 includesfile="${outdir}/includes"
                 excludesfile="${outdir}/excludesfile"
-                patternsetid="sample.versus.cap"
+                patternsetid="faceted-search.versus.cap"
                 ignoreContent="false"
                 ignoreContentPattern=".*\.jar$">
     </nx:zipdiff>
     <unzip src="${outdir}/nxr-${maven.project.version}.zip"
            dest="${outdir}/marketplace/install">
-      <patternset refid="sample.versus.cap" />
+      <patternset refid="faceted-search.versus.cap" />
     </unzip>
 
     <!-- Generate install.xml content -->
@@ -124,21 +124,10 @@
 
     <var name="install.properties"
          value="${line.separator}
-  &lt;copy file=&quot;${package.root}/install/artifacts-sample.properties&quot;${line.separator}
+  &lt;copy file=&quot;${package.root}/install/artifacts-faceted-search.properties&quot;${line.separator}
     todir=&quot;${env.server.home}/sdk&quot; overwrite=&quot;true&quot; /&gt;${line.separator}
-  &lt;copy file=&quot;${package.root}/install/test-artifacts-sample.properties&quot;${line.separator}
+  &lt;copy file=&quot;${package.root}/install/test-artifacts-faceted-search.properties&quot;${line.separator}
     todir=&quot;${env.server.home}/sdk&quot; overwrite=&quot;true&quot; /&gt;" />
-
-    <var name="install.templates" value="" />
-    <if>
-      <available file="${outdir}/marketplace/install/templates" />
-      <then>
-        <var name="install.templates"
-             value="${line.separator}
-  &lt;copy dir=&quot;${package.root}/install/templates&quot; todir=&quot;${env.templates}&quot; overwrite=&quot;true&quot; /&gt;${line.separator}
-  &lt;config addtemplate=&quot;sample&quot; /&gt;${line.separator}" />
-      </then>
-    </if>
 
     <copy file="src/main/resources/install.xml"
           todir="${outdir}/marketplace"
@@ -147,7 +136,6 @@
         <filter token="BUNDLES" value="${install.bundles}" />
         <filter token="LIBS" value="${install.libs}" />
         <filter token="PROPERTIES" value="${install.properties}" />
-        <filter token="TEMPLATES" value="${install.templates}" />
       </filterset>
     </copy>
 
