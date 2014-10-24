@@ -19,6 +19,9 @@
   <!-- <dependencies> -->
   <!-- <package>another-package:1.0.0:1.0.0</package> -->
   <!-- </dependencies> -->
+  <dependencies>
+      <package>nuxeo-virtualnavigation</package>
+  </dependencies>
   <!-- Conflicts with other packages -->
   <!-- <conflicts> -->
   <!-- <package>a-conflicting-package:1.0.0:1.0.0</package> -->
