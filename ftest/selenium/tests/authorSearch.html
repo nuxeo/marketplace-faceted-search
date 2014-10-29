@@ -57,7 +57,7 @@
 </tr>
 <tr>
 	<td>click</td>
-	<td>//a[@id='virtualNavTreeTab:virtualNavTreeList:1:virtualNavTreeLink']/img</td>
+	<td>//a[@id='nxw_navtree_facetedSearch_form:nxw_navtree_facetedSearch']/img</td>
 	<td></td>
 </tr>
 <tr>
@@ -72,35 +72,35 @@
 </tr>
 <tr>
 	<td>verifyTextPresent</td>
-	<td>Author</td>
+	<td>Creator</td>
 	<td></td>
 </tr>
 <!-- Since 5.7.3 creator search is a select2 widget-->
 <tr>
-    <td>clickAt</td>
-    <td>css=div[id$='nxw_dc_creator_select2'] input</td>
-    <td></td>
+	<td>clickAt</td>
+	<td>css=div[id$='nxw_dc_creator_select2'] input</td>
+	<td></td>
 </tr>
 <!-- The 2 following instructions are a workaround to make select2 display suggestions. Only the second typeKeys call triggers the suggestion display!!! -->
 <tr>
-    <td>typeKeys</td>
-    <td>css=div[id$='nxw_dc_creator_select2'] input</td>
-    <td>Adm</td>
+	<td>typeKeys</td>
+	<td>css=div[id$='nxw_dc_creator_select2'] input</td>
+	<td>Adm</td>
 </tr>
 <tr>
-    <td>typeKeys</td>
-    <td>css=div[id$='nxw_dc_creator_select2'] input</td>
-    <td>Adm</td>
+	<td>typeKeys</td>
+	<td>css=div[id$='nxw_dc_creator_select2'] input</td>
+	<td>Adm</td>
 </tr>
 <tr>
-    <td>waitForElementPresent</td>
-    <td>css=.select2-result-label:contains('Administrator')</td>
-    <td></td>
+	<td>waitForElementPresent</td>
+	<td>css=.select2-result-label:contains('Administrator')</td>
+	<td></td>
 </tr>
 <tr>
-    <td>clickAt</td>
-    <td>css=.select2-result-label:contains('Administrator')</td>
-    <td></td>
+	<td>clickAt</td>
+	<td>css=.select2-result-label:contains('Administrator')</td>
+	<td></td>
 </tr>
 <!--  -->
 <tr>
