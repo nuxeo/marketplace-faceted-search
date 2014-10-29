@@ -1,5 +1,5 @@
 <!-- See documentation at http://doc.nuxeo.com/x/HgIz -->
-<package type="addon" name="faceted-search" version="@VERSION@">
+<package type="addon" name="nuxeo-faceted-search" version="@VERSION@">
   <title>Faceted Search</title>
   <description>
     <p>This addon adds search using some facets in the virtual navigation tab.</p>
